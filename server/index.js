@@ -27,9 +27,10 @@ app.use(cookieParser());
 app.use(express.static('uploads'));
 
 app.use(cors({
-  origin: "https://nitm-campus-360.netlify.app/", // your frontend Netlify URL
-  credentials: true // Allow credentials (cookies, sessions, etc.)
+  origin: "https://nitm-campus-360.netlify.app", // ✅ no trailing slash
+  credentials: true
 }));
+
 // apis
 app.use("/api/v1/media", mediaRoute);
 app.use("/api/v1/user", userRoute);
