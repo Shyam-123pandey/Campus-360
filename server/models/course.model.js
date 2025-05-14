@@ -42,6 +42,6 @@ const courseSchema = new mongoose.Schema({
         default:false
     }
 
-}, {timestamps:true});
+}, {timestamps:true});  // timestaps are created at and updated at
 
 export const Course = mongoose.model("Course", courseSchema);

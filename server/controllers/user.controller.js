@@ -5,7 +5,6 @@ import { deleteMediaFromCloudinary, uploadMedia } from "../utils/cloudinary.js";
 
 export const register = async (req,res) => {
     try {
-       
         const {name, email, password} = req.body; // patel214
         if(!name || !email || !password){
             return res.status(400).json({
@@ -88,7 +87,14 @@ export const logout = async (_,res) => {
 export const getUserProfile = async (req,res) => {
     try {
         const userId = req.id;
-        const user = await User.findById(userId).select("-password").populate("enrolledCourses");
+        const user = await User.findById(userId)
+            .select("-password")
+            .populate({
+                path: "enrolledCourses",
+                select: "courseTitle courseDescription courseThumbnail coursePrice",
+                model: "Course"
+            });
+            
         if(!user){
             return res.status(404).json({
                 message:"Profile not found",

@@ -1,7 +1,9 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import { userLoggedIn, userLoggedOut } from "../authSlice";
 
-const USER_API = "http://localhost:8080/api/v1/user/"
+const URL = "https://campus-360-server.onrender.com"
+// const URL = "http://localhost:8080"
+const USER_API = `${URL}/api/v1/user/`
 
 export const authApi = createApi({
     reducerPath:"authApi",
@@ -37,7 +39,7 @@ export const authApi = createApi({
                 url:"logout",
                 method:"GET"
             }),
-            async onQueryStarted(_, {queryFulfilled, dispatch}) {
+            async onQueryStarted(_, {dispatch}) {
                 try { 
                     dispatch(userLoggedOut());
                 } catch (error) {
@@ -54,6 +56,8 @@ export const authApi = createApi({
                 try {
                     const result = await queryFulfilled;
                     dispatch(userLoggedIn({user:result.data.user}));
+                   
+                    console.log(result)
                 } catch (error) {
                     console.log(error);
                 }

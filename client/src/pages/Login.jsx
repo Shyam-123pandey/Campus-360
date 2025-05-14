@@ -65,17 +65,17 @@ const Login = () => {
 
   useEffect(() => {
     if(registerIsSuccess && registerData){
-      toast.success(registerData.message || "Signup successful.")
+      toast.success(registerData?.message || "Signup successful.")
     }
     if(registerError){
-      toast.error(registerError.data.message || "Signup Failed");
+      toast.error(registerError.data?.message || "Signup Failed");
     }
     if(loginIsSuccess && loginData){
-      toast.success(loginData.message || "Login successful.");
+      toast.success(loginData?.message || "Login successful.");
       navigate("/");
     }
     if(loginError){ 
-      toast.error(loginError.data.message || "login Failed");
+      toast.error(loginError?.data?.message || "login Failed");
     }
   }, [
     loginIsLoading,
@@ -98,7 +98,7 @@ const Login = () => {
             <CardHeader>
               <CardTitle>Signup</CardTitle>
               <CardDescription>
-                Create a new account and click signup when you're done.
+                Create a new account and click signup when you are done.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
@@ -158,7 +158,7 @@ const Login = () => {
             <CardHeader>
               <CardTitle>Login</CardTitle>
               <CardDescription>
-                Login your password here. After signup, you'll be logged in.
+                Login your password here. After signup, you will be logged in.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">

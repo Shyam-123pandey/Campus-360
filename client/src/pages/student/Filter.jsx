@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import {
@@ -10,21 +11,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const categories = [
-  { id: "nextjs", label: "Next JS" },
-  { id: "data science", label: "Data Science" },
-  { id: "frontend development", label: "Frontend Development" },
-  { id: "fullstack development", label: "Fullstack Development" },
-  { id: "mern stack development", label: "MERN Stack Development" },
-  { id: "backend development", label: "Backend Development" },
-  { id: "javascript", label: "Javascript" },
-  { id: "python", label: "Python" },
-  { id: "docker", label: "Docker" },
-  { id: "mongodb", label: "MongoDB" },
-  { id: "html", label: "HTML" },
+  { id: "Data Science", label: "Data Science" },
+  { id: "Web Development", label: "Web Development" },
+  { id: "Embedded Systems", label: "Embedded Systems" },
+  { id: "Computer Vision", label: "Computer Vision" },
+  { id: "UI/UX Design", label: "UI/UX Design" },
+  { id: "DevOps", label: "DevOps" },
+  { id: "Blockchain", label: "Blockchain" },
+  { id: "Mobile Development", label: "Mobile Development" },
+  { id: "Game Development", label: "Game Development" },
 ];
+
 
 const Filter = ({ handleFilterChange }) => {
   const [selectedCategories, setSelectedCategories] = useState([]);
@@ -66,7 +66,7 @@ const Filter = ({ handleFilterChange }) => {
       <div>
         <h1 className="font-semibold mb-2">CATEGORY</h1>
         {categories.map((category) => (
-          <div className="flex items-center space-x-2 my-2">
+          <div key={category.id} className="flex items-center space-x-2 my-2">
             <Checkbox
               id={category.id}
               onCheckedChange={() => handleCategoryChange(category.id)}

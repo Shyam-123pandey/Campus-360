@@ -19,7 +19,7 @@ export const getCourseProgress = async (req, res) => {
         message: "Course not found",
       });
     }
-
+    
     // Step-2 If no progress found, return course details with an empty progress
     if (!courseProgress) {
       return res.status(200).json({

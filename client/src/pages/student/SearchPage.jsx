@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import Filter from "./Filter";
-import SearchResult from "./SearchResult";
+/* eslint-disable react/no-unescaped-entities */
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetSearchCourseQuery } from "@/features/api/courseApi";
-import { Link, useSearchParams } from "react-router-dom";
 import { AlertCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
+import Filter from "./Filter";
+import SearchResult from "./SearchResult";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -19,6 +20,7 @@ const SearchPage = () => {
     sortByPrice
   });
 
+  console.log(data);
   const isEmpty = !isLoading && data?.courses.length === 0;
 
   const handleFilterChange = (categories, price) => {
@@ -26,7 +28,7 @@ const SearchPage = () => {
     setSortByPrice(price);
   }
   return (
-    <div className="max-w-7xl mx-auto p-4 md:p-8">
+    <div className="max-w-7xl mx-auto p-4 md:p-8 sticky">
       <div className="my-6">
         <h1 className="font-bold text-xl md:text-2xl">result for "{query}"</h1>
         <p>
@@ -34,11 +36,11 @@ const SearchPage = () => {
           <span className="text-blue-800 font-bold italic">{query}</span>
         </p>
       </div>
-      <div className="flex flex-col md:flex-row gap-10">
+      <div className="flex flex-col md:flex-row gap-10 ">
         <Filter handleFilterChange={handleFilterChange}/>
         <div className="flex-1">
           {isLoading ? (
-            Array.from({ length: 3 }).map((_, idx) => (
+            Array.from({ length: 9 }).map((_, idx) => (
               <CourseSkeleton key={idx} />
             ))
           ) : isEmpty ? (
@@ -62,7 +64,7 @@ const CourseNotFound = () => {
         Course Not Found
       </h1>
       <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
-        Sorry, we couldn't find the course you're looking for.
+        Sorry, we could not find the course you arelooking for.
       </p>
       <Link to="/" className="italic">
         <Button variant="link">Browse All Courses</Button>
