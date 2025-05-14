@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
-const URL = "https://campus-360-server.onrender.com"
+const URL = "https://campus-360-6.onrender.com"
 // const URL = "http://localhost:8080"
 
 

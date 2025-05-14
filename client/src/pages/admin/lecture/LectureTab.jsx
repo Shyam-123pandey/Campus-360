@@ -17,7 +17,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 
-const URL = "https://campus-360-server.onrender.com"
+const URL = "https://campus-360-6.onrender.com"
 // const URL = "http://localhost:8080"
 const MEDIA_API = `${URL}/api/v1/media`;
 

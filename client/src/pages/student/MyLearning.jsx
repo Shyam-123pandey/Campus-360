@@ -4,7 +4,7 @@ import Course from "./Course";
 import axios from "axios";
 import { toast } from "sonner";
 
-const URL = "https://campus-360-server.onrender.com"
+const URL = "https://campus-360-6.onrender.com"
 // const URL = "http://localhost:8080"
 
 const MyLearning = () => { 

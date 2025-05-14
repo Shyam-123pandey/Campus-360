@@ -8,7 +8,7 @@ import ItemDetail from '@/components/lost-found/ItemDetail';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
-const URL = "https://campus-360-server.onrender.com"
+const URL = "https://campus-360-6.onrender.com"
 // const URL = "http://localhost:8080"
 
 

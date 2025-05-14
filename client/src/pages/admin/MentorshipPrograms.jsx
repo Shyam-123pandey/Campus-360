@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useTheme } from '../../components/ThemeProvider';
 
-const URL = "https://campus-360-server.onrender.com"
+const URL = "https://campus-360-6.onrender.com"
 // const URL = "http://localhost:8080"
 
 
