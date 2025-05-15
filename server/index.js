@@ -28,6 +28,8 @@ app.use(express.static('uploads'));
 
 app.use(cors({
   origin: "https://nitm-campus-360.netlify.app",
+  origin: "http://localhost:5173",
+  origin: "https://campus-360.netlify.app",
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']

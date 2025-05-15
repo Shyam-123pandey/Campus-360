@@ -16,21 +16,29 @@ const MyLearning = () => {
       try {
         if (data?.user?.enrolledCourses) {
           setVerifying(true);
-          const verificationPromises = data.user.enrolledCourses.map(course => 
-            axios.get(`${URL}/api/v1/purchase/verify/${course._id}`, {
-              withCredentials: true
-            })
-          );
+          // Only verify courses that haven't been verified in the last hour
+          const lastVerified = localStorage.getItem('lastEnrollmentVerification');
+          const now = new Date().getTime();
+          
+          if (!lastVerified || (now - parseInt(lastVerified)) > 3600000) { // 1 hour
+            const verificationPromises = data.user.enrolledCourses.map(course => 
+              axios.get(`${URL}/api/v1/purchase/verify/${course._id}`, {
+                withCredentials: true
+              })
+            );
 
-          const results = await Promise.all(verificationPromises);
-          const anyFixed = results.some(result => 
-            result.data.enrollmentDetails.purchaseExists && 
-            (!result.data.enrollmentDetails.inUserCourses || !result.data.enrollmentDetails.inCourseStudents)
-          );
+            const results = await Promise.all(verificationPromises);
+            const anyFixed = results.some(result => 
+              result.data.enrollmentDetails.purchaseExists && 
+              (!result.data.enrollmentDetails.inUserCourses || !result.data.enrollmentDetails.inCourseStudents)
+            );
 
-          if (anyFixed) {
-            console.log("Some enrollments were fixed, refreshing data...");
-            await refetch();
+            if (anyFixed) {
+              console.log("Some enrollments were fixed, refreshing data...");
+              await refetch();
+            }
+            
+            localStorage.setItem('lastEnrollmentVerification', now.toString());
           }
         }
       } catch (error) {

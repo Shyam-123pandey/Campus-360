@@ -91,8 +91,9 @@ export const getUserProfile = async (req,res) => {
             .select("-password")
             .populate({
                 path: "enrolledCourses",
-                select: "courseTitle courseDescription courseThumbnail coursePrice",
-                model: "Course"
+                select: "courseTitle courseThumbnail",
+                model: "Course",
+                options: { lean: true }
             });
             
         if(!user){
